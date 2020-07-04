@@ -1,0 +1,40 @@
+--#1. For each continent show the number of countries:
+
+SELECT continent, COUNT(name)
+  FROM world
+ GROUP BY continent
+ 
+ --#2. For each continent show the total population:
+ 
+ SELECT continent, SUM(population)
+  FROM world
+ GROUP BY continent
+ 
+ --#3. WHERE and GROUP BY. The WHERE filter takes place before the aggregating function. 
+ For each relevant continent show the number of countries that has a population of at least 200000000:
+ 
+ select continent, count(name)
+ from world
+ where population>=2e8
+ group by continent
+ 
+ --#4. GROUP BY and HAVING. The HAVING clause is tested after the GROUP BY. You can test the aggregated values with a HAVING clause. 
+ Show the total population of those continents with a total population of at least half a billion:
+ 
+ *** if we write the following code results would show Asia, and the sum of population (not the population sum = 4630057826 of countries in asia,
+ but sum of population for all the countries =7615648652. 
+ why is it showing asia not other continent names?
+ 
+ Select continent, sum(population)
+ from world 
+
+ ***
+ SELECT continent, SUM(population)
+  FROM world
+ GROUP BY continent
+HAVING SUM(population)>=0.5e9
+ 
+ 
+
+ 
+ 
